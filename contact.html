@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/contact.min.css" rel="stylesheet">
+   <title>contact</title>
+</head>
+<body>
+    <div class="msgs">
+        <div class="col"><input type="text"  placeholder="Enter Name" name="uname" class="uname"></div>
+        <div class="col"><input type="text"  placeholder="Enter Email" name="email" class="email"></div>
+        <div class="col"><input type="text"  placeholder="Enter Subject" name="subject" class="subject"></div>
+        <div class="col text"><textarea name="" id="" placeholder="Enter Message" name="msgtext" class="msgtext"></textarea></div>
+        <div class="col last"><input type="submit" class="btn" value="Submit"></div>
+        <span class="error">ssssssssssss</span>
+    </div>        
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(function(){
+             // 
+            $(".btn").click(function(){
+                var uname = $(".uname").val(),
+                    email = $(".email").val(),
+                    subject = $(".subject").val(),
+                    msgtext = $(".msgtext").val(),
+                    error = $(".error");
+                if(uname == ""){
+                    error.html("Please enter your name！").fadeIn();
+                    $(".uname").focus();
+                }else if(email == ""){
+                    error.html("Please enter your email").fadeIn();
+                    $(".email").focus();
+                }else if(subject == ""){
+                    error.html("Please enter your subject").fadeIn();
+                    $(".subject").focus();            
+                }else if(msgtext == "" || msgtext == null){
+                    error.html("Please enter your message").fadeIn();
+                    $(".msgtext").focus();            
+                }else if(email.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1){
+                    error.html("").fadeOut();
+                }else{
+                    error.html("Please enter the correct email").fadeIn();
+                    $(".email").focus();
+                }
+                $(document).on('input',$(".uname",".email",".subject",".msgtext"),function(){
+                    error.fadeOut();
+                })
+
+            });
+
+        })
+    </script>
+</body>
+</html>
